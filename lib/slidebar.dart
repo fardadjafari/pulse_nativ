@@ -70,9 +70,9 @@ class _SlidebarState extends State<Slidebar>
                     thickness: 2,
                   ),
                   MenuItems(icon: Icons.home, title: "Home"),
-                  MenuItems(icon: Icons.shopping_basket, title: "Home"),
-                  MenuItems(icon: Icons.handyman, title: "Home"),
-                  MenuItems(icon: Icons.account_box_outlined, title: "Home")
+                  MenuItems(icon: Icons.shopping_basket, title: "Product"),
+                  MenuItems(icon: Icons.handyman, title: "Tools"),
+                  MenuItems(icon: Icons.account_box_outlined, title: "About us")
                 ],
               ),
             ),
