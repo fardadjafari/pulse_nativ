@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'menuItems.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'bloc/navigation_bloc.dart';
 
 class Slidebar extends StatefulWidget {
-  const Slidebar({Key? key}) : super(key: key);
-
   @override
   _SlidebarState createState() => _SlidebarState();
 }
@@ -13,7 +12,7 @@ class _SlidebarState extends State<Slidebar>
     with SingleTickerProviderStateMixin {
   bool isSidebarOpen = false;
 
-  late AnimationController _animationController;
+   AnimationController _animationController;
 
   @override
   void initState() {
@@ -69,37 +68,73 @@ class _SlidebarState extends State<Slidebar>
                     indent: 32,
                     thickness: 2,
                   ),
-                  MenuItems(icon: Icons.home, title: "Home"),
-                  MenuItems(icon: Icons.shopping_basket, title: "Product"),
-                  MenuItems(icon: Icons.handyman, title: "Tools"),
-                  MenuItems(icon: Icons.account_box_outlined, title: "About us")
+                  MenuItems(icon: Icons.home, title: "Home",
+                      onTap:(){
+                        context.bloc<NavigationBloc>().add(NavigationEvents.HomePageClickEvent);
+                        setState(() {
+                          isSidebarOpen=false;
+                        });
+                      } ),
+                  MenuItems(icon: Icons.shopping_basket, title: "Product",
+                      onTap:(){
+                        context.bloc<NavigationBloc>().add(NavigationEvents.ProductPageClickEvent);
+                        setState(() {
+                          isSidebarOpen=false;
+                        });
+                      } ),
+                  MenuItems(icon: Icons.handyman, title: "Tools",
+                      onTap:(){
+                        context.bloc<NavigationBloc>().add(NavigationEvents.ToolPageClickEvent);
+                        setState(() {
+                          isSidebarOpen=false;
+                        });
+                      } ),
+                  MenuItems(icon: Icons.account_box_outlined, title: "About us",
+                    onTap:(){
+                    context.bloc<NavigationBloc>().add(NavigationEvents.AboutUsPageClickEvent);
+                    setState(() {
+                      isSidebarOpen=false;
+                    });
+                  }
+                  ),
+                  MenuItems(icon: Icons.one_k_plus, title: "Counter",
+                      onTap:(){
+                        context.bloc<NavigationBloc>().add(NavigationEvents.CounterPageClickEvent);
+                        setState(() {
+                          isSidebarOpen=false;
+                        });
+                      }
+                  )
                 ],
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  isSidebarOpen = !isSidebarOpen;
-                });
-              },
-              child: Align(
-                  alignment: Alignment(0, -0.8),
-                  child: ClipPath(
-                    child: Container(
-                      width: 35,
-                      height: 110,
-                      alignment: Alignment.center,
-                      child: AnimatedIcon(
-                        color: Colors.black87,
-                          icon: isSidebarOpen
-                              ? AnimatedIcons.close_menu
-                              : AnimatedIcons.menu_close,
-                          progress: _animationController.view),
-                      color: Color(0xff61B15A),
-                    ),
-                    clipper: CustomerMenuClipper(),
-                  )),
-            )
+           Container(
+             margin: EdgeInsets.only(top: 40),
+             child:  GestureDetector(
+               onTap: () {
+                 setState(() {
+                   isSidebarOpen = !isSidebarOpen;
+                 });
+               },
+               child: Align(
+                   alignment: Alignment(0, -0.8),
+                   child: ClipPath(
+                     child: Container(
+                       width: 35,
+                       height: 110,
+                       alignment: Alignment.center,
+                       child: AnimatedIcon(
+                           color: Colors.black87,
+                           icon: isSidebarOpen
+                               ? AnimatedIcons.close_menu
+                               : AnimatedIcons.menu_close,
+                           progress: _animationController.view),
+                       color: Color(0xff61B15A),
+                     ),
+                     clipper: CustomerMenuClipper(),
+                   )),
+             ),
+           )
           ],
         ));
   }

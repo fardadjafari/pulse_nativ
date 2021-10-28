@@ -20,7 +20,8 @@ class _MenuItemsState extends State<MenuItems> {
           widget.title,
           style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17),
         ),
-        leading: new Icon(widget.icon,size: 31,),
+        trailing: new Icon(widget.icon,size: 31,),
+        onTap: widget.onTap,
       ),
     );
   }

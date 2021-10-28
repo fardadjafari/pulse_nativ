@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:pulse_nativ/slidebarLayout.dart';
 
 class Preloader extends StatelessWidget {
-  const Preloader({Key? key}) : super(key: key);
+  const Preloader({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class Preloader extends StatelessWidget {
 }
 
 class PreloadPage extends StatefulWidget {
-  const PreloadPage({Key? key}) : super(key: key);
+  const PreloadPage({Key key}) : super(key: key);
 
   @override
   _PreloadPageState createState() => _PreloadPageState();
@@ -27,20 +27,20 @@ class PreloadPage extends StatefulWidget {
 
 class _PreloadPageState extends State<PreloadPage>
     with TickerProviderStateMixin {
-  late AnimationController firstController;
-  late Animation<double> firstAnimation;
+   AnimationController firstController;
+   Animation<double> firstAnimation;
 
-  late AnimationController secondController;
-  late Animation<double> secondAnimation;
+   AnimationController secondController;
+   Animation<double> secondAnimation;
 
-  late AnimationController thirdController;
-  late Animation<double> thirdAnimation;
+   AnimationController thirdController;
+   Animation<double> thirdAnimation;
 
-  late AnimationController fourthController;
-  late Animation<double> fourthAnimation;
+   AnimationController fourthController;
+   Animation<double> fourthAnimation;
 
-  late AnimationController fifthController;
-  late Animation<double> fifthAnimation;
+   AnimationController fifthController;
+   Animation<double> fifthAnimation;
 
   @override
   void initState() {
