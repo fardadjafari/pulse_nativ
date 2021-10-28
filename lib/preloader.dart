@@ -9,12 +9,7 @@ class Preloader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Loading Animation',
-      home: const PreloadPage(),
-      theme: ThemeData(primarySwatch: Colors.blue),
-    );
+    return const PreloadPage();
   }
 }
 

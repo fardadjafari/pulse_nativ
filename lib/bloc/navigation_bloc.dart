@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pulse_nativ/pages/aboutusPage.dart';
-import 'package:pulse_nativ/pages/counterPafe.dart';
+import 'package:pulse_nativ/pages/counterPage.dart';
 import 'package:pulse_nativ/pages/homePage.dart';
 import 'package:pulse_nativ/pages/productPage.dart';
 import 'package:pulse_nativ/pages/toolPage.dart';

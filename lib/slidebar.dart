@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'bloc/counter_bloc.dart';
+import 'bloc/theme_bloc.dart';
 import 'menuItems.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/navigation_bloc.dart';
@@ -11,8 +13,9 @@ class Slidebar extends StatefulWidget {
 class _SlidebarState extends State<Slidebar>
     with SingleTickerProviderStateMixin {
   bool isSidebarOpen = false;
+  bool modeStyle=false;
 
-   AnimationController _animationController;
+  AnimationController _animationController;
 
   @override
   void initState() {
@@ -24,8 +27,14 @@ class _SlidebarState extends State<Slidebar>
 
   @override
   Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
-    var screenHeight = MediaQuery.of(context).size.height;
+    var screenWidth = MediaQuery
+        .of(context)
+        .size
+        .width;
+    var screenHeight = MediaQuery
+        .of(context)
+        .size
+        .height;
 
     return AnimatedPositioned(
         duration: Duration(milliseconds: 500),
@@ -69,72 +78,101 @@ class _SlidebarState extends State<Slidebar>
                     thickness: 2,
                   ),
                   MenuItems(icon: Icons.home, title: "Home",
-                      onTap:(){
-                        context.bloc<NavigationBloc>().add(NavigationEvents.HomePageClickEvent);
+                      onTap: () {
+                        context.bloc<NavigationBloc>().add(
+                            NavigationEvents.HomePageClickEvent);
                         setState(() {
-                          isSidebarOpen=false;
+                          isSidebarOpen = false;
                         });
-                      } ),
+                      }),
                   MenuItems(icon: Icons.shopping_basket, title: "Product",
-                      onTap:(){
-                        context.bloc<NavigationBloc>().add(NavigationEvents.ProductPageClickEvent);
+                      onTap: () {
+                        context.bloc<NavigationBloc>().add(
+                            NavigationEvents.ProductPageClickEvent);
                         setState(() {
-                          isSidebarOpen=false;
+                          isSidebarOpen = false;
                         });
-                      } ),
+                      }),
                   MenuItems(icon: Icons.handyman, title: "Tools",
-                      onTap:(){
-                        context.bloc<NavigationBloc>().add(NavigationEvents.ToolPageClickEvent);
+                      onTap: () {
+                        context.bloc<NavigationBloc>().add(
+                            NavigationEvents.ToolPageClickEvent);
                         setState(() {
-                          isSidebarOpen=false;
+                          isSidebarOpen = false;
                         });
-                      } ),
+                      }),
                   MenuItems(icon: Icons.account_box_outlined, title: "About us",
-                    onTap:(){
-                    context.bloc<NavigationBloc>().add(NavigationEvents.AboutUsPageClickEvent);
-                    setState(() {
-                      isSidebarOpen=false;
-                    });
-                  }
-                  ),
-                  MenuItems(icon: Icons.one_k_plus, title: "Counter",
-                      onTap:(){
-                        context.bloc<NavigationBloc>().add(NavigationEvents.CounterPageClickEvent);
+                      onTap: () {
+                        context.bloc<NavigationBloc>().add(
+                            NavigationEvents.AboutUsPageClickEvent);
                         setState(() {
-                          isSidebarOpen=false;
+                          isSidebarOpen = false;
                         });
                       }
+                  ),
+                  new BlocBuilder<CounterBloc, int>(
+                      builder: (context, int myDigit) {
+                        return MenuItems(
+                            icon: Icons.one_k_plus, title: "$myDigit Counter ",
+                            onTap: () {
+                              context.bloc<NavigationBloc>().add(
+                                  NavigationEvents.CounterPageClickEvent);
+                              setState(() {
+                                isSidebarOpen = false;
+                              });
+                            }
+                        );
+                      }),
+                  new Divider(
+                    height: 65,
+                    color: Colors.black38,
+                    indent: 32,
+                    thickness: 2,
+                  ),
+                  new Center(
+                    child: SwitchListTile(
+                      secondary: Icon(Icons.wb_sunny) ,
+                      activeColor: Colors.black54,
+                      value: modeStyle,
+                      onChanged: (value){
+                        setState(() {
+                          modeStyle=!modeStyle;
+                          context.bloc<ThemeBloc>().add(ThemeEvents.toggle);
+                        });
+                      },
+                    ),
                   )
+
                 ],
               ),
             ),
-           Container(
-             margin: EdgeInsets.only(top: 40),
-             child:  GestureDetector(
-               onTap: () {
-                 setState(() {
-                   isSidebarOpen = !isSidebarOpen;
-                 });
-               },
-               child: Align(
-                   alignment: Alignment(0, -0.8),
-                   child: ClipPath(
-                     child: Container(
-                       width: 35,
-                       height: 110,
-                       alignment: Alignment.center,
-                       child: AnimatedIcon(
-                           color: Colors.black87,
-                           icon: isSidebarOpen
-                               ? AnimatedIcons.close_menu
-                               : AnimatedIcons.menu_close,
-                           progress: _animationController.view),
-                       color: Color(0xff61B15A),
-                     ),
-                     clipper: CustomerMenuClipper(),
-                   )),
-             ),
-           )
+            Container(
+              margin: EdgeInsets.only(top: 40),
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isSidebarOpen = !isSidebarOpen;
+                  });
+                },
+                child: Align(
+                    alignment: Alignment(0, -0.8),
+                    child: ClipPath(
+                      child: Container(
+                        width: 35,
+                        height: 110,
+                        alignment: Alignment.center,
+                        child: AnimatedIcon(
+                            color: Colors.black87,
+                            icon: isSidebarOpen
+                                ? AnimatedIcons.close_menu
+                                : AnimatedIcons.menu_close,
+                            progress: _animationController.view),
+                        color: Color(0xff61B15A),
+                      ),
+                      clipper: CustomerMenuClipper(),
+                    )),
+              ),
+            )
           ],
         ));
   }
