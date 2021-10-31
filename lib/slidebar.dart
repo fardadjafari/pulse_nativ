@@ -172,6 +172,7 @@ class _SlidebarState extends State<Slidebar>
                       clipper: CustomerMenuClipper(),
                     )),
               ),
+              height: screenHeight-15,
             )
           ],
         ));

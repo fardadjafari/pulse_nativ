@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pulse_nativ/bloc/counter_bloc.dart';
 import 'package:pulse_nativ/bloc/theme_bloc.dart';
+import 'package:pulse_nativ/pages/Welcom/welcomePage.dart';
 import 'package:pulse_nativ/preloader.dart';
 
 void main() {
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
             title: 'Pulse Group',
             debugShowCheckedModeBanner: false,
             theme: themeData,
-            home: Preloader(),
+            home: WelcomePage(),
           );
         },)
     );

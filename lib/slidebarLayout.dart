@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pulse_nativ/bloc/navigation_bloc.dart';
-import 'package:pulse_nativ/pages/homePage.dart';
+import 'package:pulse_nativ/pages/Panel/homePage.dart';
 import 'package:pulse_nativ/slidebar.dart';
 
 class slidebarLayout extends StatefulWidget {

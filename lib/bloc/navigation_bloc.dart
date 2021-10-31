@@ -1,17 +1,19 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:pulse_nativ/pages/aboutusPage.dart';
-import 'package:pulse_nativ/pages/counterPage.dart';
-import 'package:pulse_nativ/pages/homePage.dart';
-import 'package:pulse_nativ/pages/productPage.dart';
-import 'package:pulse_nativ/pages/toolPage.dart';
+import 'package:pulse_nativ/pages/Panel/aboutusPage.dart';
+import 'package:pulse_nativ/pages/Panel/counterPage.dart';
+import 'package:pulse_nativ/pages/Panel/homePage.dart';
+import 'package:pulse_nativ/pages/Panel/productPage.dart';
+import 'package:pulse_nativ/pages/Panel/toolPage.dart';
+import 'package:pulse_nativ/pages/Welcom/welcomePage.dart';
 
 enum NavigationEvents {
   HomePageClickEvent,
   AboutUsPageClickEvent,
   ProductPageClickEvent,
   ToolPageClickEvent,
-  CounterPageClickEvent
+  CounterPageClickEvent,
+  WelcomePageClickEvent
 }
 
 class NavigationBloc extends Bloc<NavigationEvents, Widget> {
@@ -33,6 +35,9 @@ class NavigationBloc extends Bloc<NavigationEvents, Widget> {
     }
     if (event == NavigationEvents.CounterPageClickEvent) {
       yield CounterPage();
+    }
+    if(event ==NavigationEvents.WelcomePageClickEvent){
+      yield WelcomePage();
     }
   }
 }
