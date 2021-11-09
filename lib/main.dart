@@ -7,7 +7,6 @@ import 'package:pulse_nativ/preloader.dart';
 
 void main() {
   runApp(const MyApp());
-  print("start");
 }
 
 class MyApp extends StatelessWidget {

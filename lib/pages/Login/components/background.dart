@@ -30,7 +30,7 @@ class Background extends StatelessWidget {
             right: 0,
             child: Image.asset(
               "assets/images/RgihtBottom.png",
-              width: size.width * 0.3,
+              width: size.width * 0.26,
             ),
           ),
           child
