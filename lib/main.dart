@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pulse_nativ/bloc/counter_bloc.dart';
 import 'package:pulse_nativ/bloc/theme_bloc.dart';
-import 'package:pulse_nativ/pages/Welcom/welcomePage.dart';
 import 'package:pulse_nativ/preloader.dart';
 
 void main() {
@@ -18,20 +17,21 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider<CounterBloc>(
-            create: (BuildContext context)=>CounterBloc() ,
+            create: (BuildContext context) => CounterBloc(),
           ),
           BlocProvider<ThemeBloc>(
-            create: (BuildContext context)=>ThemeBloc() ,
+            create: (BuildContext context) => ThemeBloc(),
           )
         ],
-        child: BlocBuilder<ThemeBloc,ThemeData>(builder: (context,ThemeData themeData){
-          return MaterialApp(
-            title: 'Pulse Group',
-            debugShowCheckedModeBanner: false,
-            theme: themeData,
-            home: WelcomePage(),
-          );
-        },)
-    );
+        child: BlocBuilder<ThemeBloc, ThemeData>(
+          builder: (context, ThemeData themeData) {
+            return MaterialApp(
+              title: 'Pulse Group',
+              debugShowCheckedModeBanner: false,
+              theme: themeData,
+              home: Preloader(),
+            );
+          },
+        ));
   }
 }

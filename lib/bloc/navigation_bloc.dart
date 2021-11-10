@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:pulse_nativ/pages/Login/loginPage.dart';
 import 'package:pulse_nativ/pages/Panel/aboutusPage.dart';
 import 'package:pulse_nativ/pages/Panel/counterPage.dart';
 import 'package:pulse_nativ/pages/Panel/homePage.dart';
@@ -13,7 +14,8 @@ enum NavigationEvents {
   ProductPageClickEvent,
   ToolPageClickEvent,
   CounterPageClickEvent,
-  WelcomePageClickEvent
+  WelcomePageClickEvent,
+  LogoutPageClickEvent
 }
 
 class NavigationBloc extends Bloc<NavigationEvents, Widget> {
@@ -36,8 +38,11 @@ class NavigationBloc extends Bloc<NavigationEvents, Widget> {
     if (event == NavigationEvents.CounterPageClickEvent) {
       yield CounterPage();
     }
-    if(event ==NavigationEvents.WelcomePageClickEvent){
+    if (event == NavigationEvents.WelcomePageClickEvent) {
       yield WelcomePage();
+    }
+    if (event == NavigationEvents.LogoutPageClickEvent) {
+      yield LoginPage();
     }
   }
 }

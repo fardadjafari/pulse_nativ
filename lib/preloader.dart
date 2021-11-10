@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pulse_nativ/pages/Welcom/welcomePage.dart';
 import 'package:pulse_nativ/slidebarLayout.dart';
 
 class Preloader extends StatelessWidget {
@@ -22,20 +23,20 @@ class PreloadPage extends StatefulWidget {
 
 class _PreloadPageState extends State<PreloadPage>
     with TickerProviderStateMixin {
-   AnimationController firstController;
-   Animation<double> firstAnimation;
+  AnimationController firstController;
+  Animation<double> firstAnimation;
 
-   AnimationController secondController;
-   Animation<double> secondAnimation;
+  AnimationController secondController;
+  Animation<double> secondAnimation;
 
-   AnimationController thirdController;
-   Animation<double> thirdAnimation;
+  AnimationController thirdController;
+  Animation<double> thirdAnimation;
 
-   AnimationController fourthController;
-   Animation<double> fourthAnimation;
+  AnimationController fourthController;
+  Animation<double> fourthAnimation;
 
-   AnimationController fifthController;
-   Animation<double> fifthAnimation;
+  AnimationController fifthController;
+  Animation<double> fifthAnimation;
 
   @override
   void initState() {
@@ -43,7 +44,7 @@ class _PreloadPageState extends State<PreloadPage>
     Timer(Duration(seconds: 7), () {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => slidebarLayout()),
+        MaterialPageRoute(builder: (context) => WelcomePage()),
       );
     });
 
@@ -249,4 +250,3 @@ class MyPainter extends CustomPainter {
     return true;
   }
 }
-

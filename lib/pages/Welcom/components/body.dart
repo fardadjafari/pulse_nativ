@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:pulse_nativ/components/rounded_button.dart';
 import 'package:pulse_nativ/data/constanse.dart';
 import 'package:pulse_nativ/pages/Login/loginPage.dart';
+import 'package:pulse_nativ/pages/Signup/signup_screen.dart';
 
 import 'background.dart';
 
@@ -40,7 +41,11 @@ class Body extends StatelessWidget {
             ),
             RoundedButton(
               text: "Register",
-              press: () {},
+              press: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return SignUpScreen();
+                }));
+              },
               color: KPrimaryLightColor,
             ),
           ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pulse_nativ/pages/Login/loginPage.dart';
 import 'bloc/counter_bloc.dart';
 import 'bloc/theme_bloc.dart';
 import 'menuItems.dart';
@@ -13,7 +14,7 @@ class Slidebar extends StatefulWidget {
 class _SlidebarState extends State<Slidebar>
     with SingleTickerProviderStateMixin {
   bool isSidebarOpen = false;
-  bool modeStyle=false;
+  bool modeStyle = false;
 
   AnimationController _animationController;
 
@@ -27,14 +28,8 @@ class _SlidebarState extends State<Slidebar>
 
   @override
   Widget build(BuildContext context) {
-    var screenWidth = MediaQuery
-        .of(context)
-        .size
-        .width;
-    var screenHeight = MediaQuery
-        .of(context)
-        .size
-        .height;
+    var screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
 
     return AnimatedPositioned(
         duration: Duration(milliseconds: 500),
@@ -77,51 +72,81 @@ class _SlidebarState extends State<Slidebar>
                     indent: 32,
                     thickness: 2,
                   ),
-                  MenuItems(icon: Icons.home, title: "Home",
+                  MenuItems(
+                      icon: Icons.home,
+                      title: "Home",
                       onTap: () {
-                        context.bloc<NavigationBloc>().add(
-                            NavigationEvents.HomePageClickEvent);
+                        context
+                            .bloc<NavigationBloc>()
+                            .add(NavigationEvents.HomePageClickEvent);
                         setState(() {
                           isSidebarOpen = false;
                         });
                       }),
-                  MenuItems(icon: Icons.shopping_basket, title: "Product",
+                  MenuItems(
+                      icon: Icons.shopping_basket,
+                      title: "Product",
                       onTap: () {
-                        context.bloc<NavigationBloc>().add(
-                            NavigationEvents.ProductPageClickEvent);
+                        context
+                            .bloc<NavigationBloc>()
+                            .add(NavigationEvents.ProductPageClickEvent);
                         setState(() {
                           isSidebarOpen = false;
                         });
                       }),
-                  MenuItems(icon: Icons.handyman, title: "Tools",
+                  MenuItems(
+                      icon: Icons.handyman,
+                      title: "Tools",
                       onTap: () {
-                        context.bloc<NavigationBloc>().add(
-                            NavigationEvents.ToolPageClickEvent);
+                        context
+                            .bloc<NavigationBloc>()
+                            .add(NavigationEvents.ToolPageClickEvent);
                         setState(() {
                           isSidebarOpen = false;
                         });
                       }),
-                  MenuItems(icon: Icons.account_box_outlined, title: "About us",
+                  MenuItems(
+                      icon: Icons.account_box_outlined,
+                      title: "About us",
                       onTap: () {
-                        context.bloc<NavigationBloc>().add(
-                            NavigationEvents.AboutUsPageClickEvent);
+                        context
+                            .bloc<NavigationBloc>()
+                            .add(NavigationEvents.AboutUsPageClickEvent);
                         setState(() {
                           isSidebarOpen = false;
                         });
-                      }
-                  ),
+                      }),
                   new BlocBuilder<CounterBloc, int>(
                       builder: (context, int myDigit) {
-                        return MenuItems(
-                            icon: Icons.one_k_plus, title: "$myDigit Counter ",
-                            onTap: () {
-                              context.bloc<NavigationBloc>().add(
-                                  NavigationEvents.CounterPageClickEvent);
-                              setState(() {
-                                isSidebarOpen = false;
-                              });
-                            }
-                        );
+                    return MenuItems(
+                        icon: Icons.one_k_plus,
+                        title: "$myDigit Counter ",
+                        onTap: () {
+                          context
+                              .bloc<NavigationBloc>()
+                              .add(NavigationEvents.CounterPageClickEvent);
+                          setState(() {
+                            isSidebarOpen = false;
+                          });
+                        });
+                  }),
+                  MenuItems(
+                      icon: Icons.logout,
+                      title: "Logout",
+                      onTap: () {
+                        context
+                            .bloc<NavigationBloc>()
+                            .add(NavigationEvents.LogoutPageClickEvent);
+                        setState(() {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return LoginPage();
+                              },
+                            ),
+                          );
+                        });
                       }),
                   new Divider(
                     height: 65,
@@ -131,18 +156,17 @@ class _SlidebarState extends State<Slidebar>
                   ),
                   new Center(
                     child: SwitchListTile(
-                      secondary: Icon(Icons.wb_sunny) ,
+                      secondary: Icon(Icons.wb_sunny),
                       activeColor: Colors.black54,
                       value: modeStyle,
-                      onChanged: (value){
+                      onChanged: (value) {
                         setState(() {
-                          modeStyle=!modeStyle;
+                          modeStyle = !modeStyle;
                           context.bloc<ThemeBloc>().add(ThemeEvents.toggle);
                         });
                       },
                     ),
                   )
-
                 ],
               ),
             ),
@@ -172,7 +196,7 @@ class _SlidebarState extends State<Slidebar>
                       clipper: CustomerMenuClipper(),
                     )),
               ),
-              height: screenHeight-15,
+              height: screenHeight - 15,
             )
           ],
         ));
