@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pulse_nativ/data/category_data.dart';
 
 class HomePage extends StatelessWidget {
@@ -68,30 +69,36 @@ class HomePage extends StatelessWidget {
               ],
             ),
             SizedBox(height: 50),
-            Directionality(textDirection: TextDirection.ltr, child:  Row(
+            Directionality(
+              textDirection: TextDirection.ltr,
+              child: Row(
+                children: [
+                  Text(
+                    "Hello To My App",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(fontWeight: FontWeight.w200, fontSize: 20),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(height: 10),
+            Directionality(
+                textDirection: TextDirection.ltr,
+                child: Row(
                   children: [
                     Text(
-                      "Hello To My App",
+                      "Milad Karimifard",
                       textAlign: TextAlign.left,
-                      style: TextStyle(fontWeight: FontWeight.w200, fontSize: 20),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                     )
                   ],
-                ),),
-            SizedBox(height: 10),
-            Directionality(textDirection: TextDirection.ltr ,child: Row(
-              children: [
-                Text(
-                  "Milad Karimifard",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-                )
-              ],
-            )),
+                )),
             SizedBox(height: 50),
             Expanded(
                 child: ListView.builder(
-                  itemCount: imageList.length,
-                    itemBuilder: (context,index){
+                    itemCount: imageList.length,
+                    itemBuilder: (context, index) {
                       return Container(
                         width: double.infinity,
                         height: 100,
@@ -103,17 +110,15 @@ class HomePage extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Image.network(imageList[index],width: 70),
-                            Text(categoryName[index],
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold
-                            ),)
+                            SvgPicture.asset(imageList[index], width: 50),
+                            Text(
+                              categoryName[index],
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            )
                           ],
                         ),
                       );
-                    }
-                )
-            )
+                    }))
           ],
         ),
       ),
